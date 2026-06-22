@@ -1,0 +1,1 @@
+{"action":"evaluate","args":{"code":"(() => { const imgs = [...document.querySelectorAll('img')]; const urls = imgs.filter(img => img.src && img.src.includes('myqcloud')).map(img => img.src); return JSON.stringify({count: urls.length, urls: urls}); })()"},"session":"history-images"}
