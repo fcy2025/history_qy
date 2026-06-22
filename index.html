@@ -92,6 +92,10 @@ body{font-family:"Segoe UI","Microsoft YaHei","PingFang SC",sans-serif;backgroun
 .timeline-content{flex:1;}
 @media(max-width:768px){.sidebar{width:100%;position:relative;}.main{margin-left:0;}#app{flex-direction:column;}}
 .highlight{background:yellow;}
+.back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;background:var(--primary);color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:24px;display:none;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.2);transition:all .3s;z-index:1000;}
+.back-to-top:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.25);}
+.back-to-top.show{display:flex;}
+@media(max-width:768px){.back-to-top{bottom:80px;right:15px;width:52px;height:52px;font-size:26px;}}
 </style>
 </head>
 <body>
@@ -550,6 +554,17 @@ function closeTimeline(){document.getElementById('timeline-overlay').classList.r
 mastered.forEach(id=>{const c=document.getElementById(id); if(c)c.classList.add('mastered');});
 updateStats();
 toggleBook('qishang');
+
+// 返回顶部按钮
+const backToTop=document.createElement('button');
+backToTop.className='back-to-top';
+backToTop.innerHTML='↑';
+backToTop.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+document.body.appendChild(backToTop);
+
+window.addEventListener('scroll',()=>{
+  backToTop.classList.toggle('show',window.scrollY>300);
+});
 </script>
 </body>
 </html>
